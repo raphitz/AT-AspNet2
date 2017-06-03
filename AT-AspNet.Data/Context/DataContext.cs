@@ -6,7 +6,7 @@ namespace AT_AspNet.Data.Context
 {
     public class DataContext : DbContext
     {
-        public DataContext() : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\workspace\AT-AspNet\AT-AspNet.Data\DataBase\AT-AspNet-Database.mdf;Integrated Security=True")
+        public DataContext() : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\workspace\AT-AspNet2\AT-AspNet.Data\DataBase\AT-AspNet-Database.mdf;Integrated Security=True")
         {
 
         }

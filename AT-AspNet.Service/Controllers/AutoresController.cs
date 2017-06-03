@@ -18,9 +18,29 @@ namespace AT_AspNet.Service.Controllers
         private DataContext db = new DataContext();
 
         // GET: api/Autores
-        public IQueryable<Autor> GetAutores()
+        public IList<Autor> GetAutores()
         {
-            return db.Autores;
+            var retorno = db.Autores.ToList();
+            List<Autor> autores = new List<Autor>();
+            foreach (var item in retorno)
+            {
+                var autor = new Autor()
+                {
+                    AutorId = item.AutorId,
+                    Nome = item.Nome,
+                    Sobrenome = item.Sobrenome,
+                    Email = item.Email,
+                    DataNascimento = item.DataNascimento,
+                    Livros = new List<Livro>()
+                };
+                foreach (var item2 in item.Livros)
+                {
+                    autor.Livros.Add(item2);
+                }
+                autores.Add(autor);
+            }
+
+            return autores;
         }
 
         // GET: api/Autores/5
@@ -51,7 +71,6 @@ namespace AT_AspNet.Service.Controllers
             }
 
             db.Entry(autor).State = EntityState.Modified;
-
             try
             {
                 db.SaveChanges();
