@@ -13,14 +13,35 @@ using AT_AspNet.Domain;
 
 namespace AT_AspNet.Service.Controllers
 {
+    
     public class LivrosController : ApiController
     {
         private DataContext db = new DataContext();
 
         // GET: api/Livros
-        public IQueryable<Livro> GetLivros()
+        public IList<Livro> GetLivros()
         {
-            return db.Livros;
+            var retorno = db.Livros.ToList();
+            List<Livro> livros = new List<Livro>();
+            foreach (var item in retorno)
+            {
+                var livro = new Livro()
+                {
+                    LivroId = item.LivroId,
+                    Titulo = item.Titulo,
+                    Isbn = item.Isbn,
+                    Ano = item.Ano,
+                    Autores = new List<Autor>()
+                };
+                foreach (var item2 in item.Autores)
+                {
+                    livro.Autores.Add(item2);
+                }
+                livros.Add(livro);
+            }
+
+            return livros;
+            
         }
 
         // GET: api/Livros/5
@@ -102,6 +123,7 @@ namespace AT_AspNet.Service.Controllers
             return Ok(livro);
         }
 
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

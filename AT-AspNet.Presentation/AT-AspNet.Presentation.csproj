@@ -205,10 +205,16 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AutoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LivrosController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706031813480_InitialCreate.cs" />
+    <Compile Include="Migrations\201706031813480_InitialCreate.Designer.cs">
+      <DependentUpon>201706031813480_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AutorViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -279,6 +285,11 @@
     <Content Include="Views\Autores\Create.cshtml" />
     <Content Include="Views\Autores\Edit.cshtml" />
     <Content Include="Views\Autores\Delete.cshtml" />
+    <Content Include="Views\Livros\Index.cshtml" />
+    <Content Include="Views\Livros\Details.cshtml" />
+    <Content Include="Views\Livros\Create.cshtml" />
+    <Content Include="Views\Livros\Edit.cshtml" />
+    <Content Include="Views\Livros\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -303,6 +314,11 @@
       <Project>{C7B6D499-4184-44B4-8720-E5FCFDAC4CDC}</Project>
       <Name>AT-AspNet.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706031813480_InitialCreate.resx">
+      <DependentUpon>201706031813480_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

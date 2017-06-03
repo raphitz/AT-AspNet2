@@ -63,6 +63,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\DataContext.cs" />
+    <Compile Include="Migrations\201706031814070_InitialCreate.cs" />
+    <Compile Include="Migrations\201706031814070_InitialCreate.Designer.cs">
+      <DependentUpon>201706031814070_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706032030434_001.cs" />
+    <Compile Include="Migrations\201706032030434_001.Designer.cs">
+      <DependentUpon>201706032030434_001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,7 +83,14 @@
       <DependentUpon>AT-AspNet-Database.mdf</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706031814070_InitialCreate.resx">
+      <DependentUpon>201706031814070_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706032030434_001.resx">
+      <DependentUpon>201706032030434_001.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>

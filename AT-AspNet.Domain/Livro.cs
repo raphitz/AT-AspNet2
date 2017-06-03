@@ -16,8 +16,6 @@ namespace AT_AspNet.Domain
 
         public int Ano { get; set; }
 
-        public int AutorId { get; set; }
-
         public virtual ICollection<Autor> Autores { get; set; }
     }
 }

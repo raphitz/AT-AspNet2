@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace AT_AspNet.Presentation.Controllers
 {
-    [Authorize]
+    [Authorize]    
     public class AutoresController : Controller
     {
         // GET: Autores
@@ -24,7 +24,7 @@ namespace AT_AspNet.Presentation.Controllers
             using (var apiClient = new System.Net.Http.HttpClient())
             {
                 var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
-                apiClient.BaseAddress = new Uri("https://localhost:44368/");
+                apiClient.BaseAddress = new Uri("https://localhost:44380/");
                 apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
                 var response = apiClient.GetAsync("/api/Autores").Result;
 
@@ -46,7 +46,7 @@ namespace AT_AspNet.Presentation.Controllers
             using (var apiClient = new HttpClient())
             {
                 var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
-                apiClient.BaseAddress = new Uri("https://localhost:44368/");
+                apiClient.BaseAddress = new Uri("https://localhost:44380/");
                 apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
                 var response = apiClient.GetAsync("/api/Autores/" + id).Result;
 
@@ -77,7 +77,7 @@ namespace AT_AspNet.Presentation.Controllers
                 using (var apiClient = new HttpClient())
                 {
                     var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
-                    apiClient.BaseAddress = new Uri("https://localhost:44368/");
+                    apiClient.BaseAddress = new Uri("https://localhost:44380/");
                     apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
                     var resposta = await apiClient.PostAsJsonAsync("/api/Autores", autor);
                                        
@@ -97,7 +97,7 @@ namespace AT_AspNet.Presentation.Controllers
             using (var apiClient = new HttpClient())
             {
                 var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
-                apiClient.BaseAddress = new Uri("https://localhost:44368/");
+                apiClient.BaseAddress = new Uri("https://localhost:44380/");
                 apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
                 var response = apiClient.GetAsync("/api/Autores/" + id).Result;
 
@@ -123,7 +123,7 @@ namespace AT_AspNet.Presentation.Controllers
                 using (var apiClient = new HttpClient())
                 {
                     var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
-                    apiClient.BaseAddress = new Uri("https://localhost:44368/");
+                    apiClient.BaseAddress = new Uri("https://localhost:44380/");
                     apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
                     var resposta = await apiClient.PutAsJsonAsync("/api/Autores/"+id, autor);
 
@@ -143,7 +143,7 @@ namespace AT_AspNet.Presentation.Controllers
             using (var apiClient = new HttpClient())
             {
                 var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
-                apiClient.BaseAddress = new Uri("https://localhost:44368/");
+                apiClient.BaseAddress = new Uri("https://localhost:44380/");
                 apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
                 var response = apiClient.GetAsync("/api/Autores/" + id).Result;
 
@@ -169,7 +169,7 @@ namespace AT_AspNet.Presentation.Controllers
                 using (var apiClient = new HttpClient())
                 {
                     var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
-                    apiClient.BaseAddress = new Uri("https://localhost:44368/");
+                    apiClient.BaseAddress = new Uri("https://localhost:44380/");
                     apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
                     var resposta = await apiClient.DeleteAsync("/api/Autores/" + id);
 

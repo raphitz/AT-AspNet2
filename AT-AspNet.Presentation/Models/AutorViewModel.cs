@@ -17,11 +17,9 @@ namespace AT_AspNet.Presentation.Models
         [Required]
         [StringLength(150)]
         public string Sobrenome { get; set; }
-        [Required]
-        public string Email { get; set; }
-        [Required]
-        public DateTime DataNascimento { get; set; }
 
-        public virtual ICollection<Livro> Livros { get; set; }
+        public bool Selecionado { get; set; }
+
+        
     }
 }
