@@ -35,6 +35,7 @@ namespace AT_AspNet.Service.Controllers
                 };
                 foreach (var item2 in item.Livros)
                 {
+                    item2.Autores = new List<Autor>();
                     autor.Livros.Add(item2);
                 }
                 autores.Add(autor);
@@ -47,11 +48,22 @@ namespace AT_AspNet.Service.Controllers
         [ResponseType(typeof(Autor))]
         public IHttpActionResult GetAutor(int id)
         {
-            Autor autor = db.Autores.Find(id);
-            if (autor == null)
+
+            Autor busca = db.Autores.Find(id);
+            if (busca == null)
             {
                 return NotFound();
             }
+            Autor autor = new Autor()
+            {
+                AutorId = busca.AutorId,
+                Nome = busca.Nome,
+                Sobrenome = busca.Sobrenome,
+                Email = busca.Email,
+                DataNascimento = busca.DataNascimento,
+                Livros = new List<Livro>()
+            };
+                      
 
             return Ok(autor);
         }

@@ -13,7 +13,7 @@ using AT_AspNet.Domain;
 
 namespace AT_AspNet.Service.Controllers
 {
-    
+    [RoutePrefix("api/Livros")]
     public class LivrosController : ApiController
     {
         private DataContext db = new DataContext();
@@ -35,6 +35,7 @@ namespace AT_AspNet.Service.Controllers
                 };
                 foreach (var item2 in item.Autores)
                 {
+                    item2.Livros = new List<Livro>();
                     livro.Autores.Add(item2);
                 }
                 livros.Add(livro);
@@ -48,12 +49,19 @@ namespace AT_AspNet.Service.Controllers
         [ResponseType(typeof(Livro))]
         public IHttpActionResult GetLivro(int id)
         {
-            Livro livro = db.Livros.Find(id);
-            if (livro == null)
+            Livro busca = db.Livros.Find(id);
+            if (busca == null)
             {
                 return NotFound();
             }
-
+            Livro livro = new Livro()
+            {
+                LivroId = busca.LivroId,
+                Titulo = busca.Titulo,
+                Isbn = busca.Isbn,
+                Ano = busca.Ano,
+                Autores = new List<Autor>()
+            };
             return Ok(livro);
         }
 
@@ -122,8 +130,20 @@ namespace AT_AspNet.Service.Controllers
 
             return Ok(livro);
         }
+        [HttpGet]
+        [Route("FazRelacionamento")]
+        public void FazRelacionamento(int autorId, int livroId)
+        {
+            var autor = db.Autores.Where(a => a.AutorId == autorId).FirstOrDefault();
+            var livro = db.Livros.Where(b => b.LivroId == livroId).FirstOrDefault();
 
-        
+            autor.Livros.Add(livro);
+            livro.Autores.Add(autor);
+            db.SaveChanges();
+
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

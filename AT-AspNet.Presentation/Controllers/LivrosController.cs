@@ -67,6 +67,7 @@ namespace AT_AspNet.Presentation.Controllers
 
         // POST: Livros/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Livro livro)
         {
             int id = 0;
@@ -130,6 +131,7 @@ namespace AT_AspNet.Presentation.Controllers
 
         // POST: Livros/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, Livro  livro)
         {
             try
@@ -175,6 +177,7 @@ namespace AT_AspNet.Presentation.Controllers
 
         // POST: Livros/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, FormCollection collection)
         {
             try
@@ -195,56 +198,56 @@ namespace AT_AspNet.Presentation.Controllers
             }
         }
 
-        //public ActionResult AdicionarAutores(int id)
-        //{
-        //    TempData["livroid"] = id;
-        //    TempData.Keep();
-        //    using (var apiClient = new System.Net.Http.HttpClient())
-        //    {
-        //        var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
-        //        apiClient.BaseAddress = new Uri("https://localhost:44380/");
-        //        apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
-        //        var response = apiClient.GetAsync("/api/Autores").Result;
+        public ActionResult AdicionarAutores(int id)
+        {
+            TempData["livroid"] = id;
+            TempData.Keep();
+            using (var apiClient = new System.Net.Http.HttpClient())
+            {
+                var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
+                apiClient.BaseAddress = new Uri("https://localhost:44380/");
+                apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
+                var response = apiClient.GetAsync("/api/Autores").Result;
 
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            var JsonString = response.Content.ReadAsStringAsync().Result;
-        //            var autores = JsonConvert.DeserializeObject<List<Autor>>(JsonString);
+                if (response.IsSuccessStatusCode)
+                {
+                    var JsonString = response.Content.ReadAsStringAsync().Result;
+                    var autores = JsonConvert.DeserializeObject<List<Autor>>(JsonString);
 
-        //            TempData.Keep();
+                    TempData.Keep();
 
-        //            return View(autores);
+                    return View(autores);
 
-        //        }
-        //        return View();
-        //    }
-        //}
+                }
+                return View();
+            }
+        }
 
-        //public async Task<ActionResult> FazRelacionamento(int id)
-        //{
-        //    var livroid = (int)TempData["livroid"];
+        public async Task<ActionResult> FazRelacionamento(int id)
+        {
+            var livroid = (int)TempData["livroid"];
 
-        //    try
-        //    {
-        //        using (var apiClient = new HttpClient())
-        //        {
-        //            var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
-        //            apiClient.BaseAddress = new Uri("https://localhost:44380/");
-        //            apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
-        //            var uri = "/api/Livros/FazRelacionamento?autorId=" + id + "&livroId=" + livroid;
+            try
+            {
+                using (var apiClient = new HttpClient())
+                {
+                    var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
+                    apiClient.BaseAddress = new Uri("https://localhost:44380/");
+                    apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
+                    var uri = "/api/Livros/FazRelacionamento?autorId=" + id + "&livroId=" + livroid;
 
-        //            var resposta = await apiClient.GetAsync(uri);
+                    var resposta = await apiClient.GetAsync(uri);
 
-        //            return RedirectToAction("Index");
-        //        }
+                    return RedirectToAction("Index");
+                }
 
 
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
+            }
+            catch
+            {
+                return View();
+            }
 
-        //}
+        }
     }
 }

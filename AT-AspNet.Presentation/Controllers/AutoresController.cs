@@ -62,7 +62,7 @@ namespace AT_AspNet.Presentation.Controllers
             }
         }
 
-        // GET: Autores/Create
+        // GET: Autores/Create        
         public ActionResult Create()
         {
             return View();
@@ -70,6 +70,7 @@ namespace AT_AspNet.Presentation.Controllers
 
         // POST: Autores/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Autor autor)
         {
             try
@@ -116,6 +117,7 @@ namespace AT_AspNet.Presentation.Controllers
 
         // POST: Autores/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, Autor autor)
         {
             try
@@ -162,6 +164,7 @@ namespace AT_AspNet.Presentation.Controllers
 
         // POST: Autores/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, FormCollection collection)
         {
             try

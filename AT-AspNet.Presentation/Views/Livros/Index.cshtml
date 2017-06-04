@@ -20,6 +20,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Ano)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Autores)
+        </th>
         <th></th>
     </tr>
 
@@ -35,9 +38,17 @@
             @Html.DisplayFor(modelItem => item.Ano)
         </td>
         <td>
+            @foreach (var item2 in item.Autores)
+            {
+                @Html.DisplayFor(modelItem => item2.Nome)<span>-</span>@Html.DisplayFor(modelItem => item2.Sobrenome)<br/>
+            }
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.LivroId }) |
             @Html.ActionLink("Details", "Details", new { id=item.LivroId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.LivroId }) |
+            @Html.ActionLink("Adicionar Autor", "AdicionarAutores", new { id = item.LivroId }) 
+
             
 
 
