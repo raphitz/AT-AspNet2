@@ -13,6 +13,7 @@ using AT_AspNet.Presentation.Models;
 namespace AT_AspNet.Presentation.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

@@ -14,7 +14,8 @@ using System.Web.Mvc;
 
 namespace AT_AspNet.Presentation.Controllers
 {
-    [Authorize]    
+    [Authorize]
+    [RequireHttps]
     public class AutoresController : Controller
     {
         // GET: Autores

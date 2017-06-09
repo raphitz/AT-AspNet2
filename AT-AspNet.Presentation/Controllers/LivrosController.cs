@@ -12,6 +12,7 @@ using System.Web.Mvc;
 namespace AT_AspNet.Presentation.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class LivrosController : Controller
     {
         // GET: Livros
